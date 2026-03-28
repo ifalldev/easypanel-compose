@@ -183,6 +183,49 @@ services:
           - /storage/v1/
     plugins:
       - name: cors
+        config:
+          # Origem: inclua admin + app (como você sugeriu)
+          origins:
+            - https://admin.algoritmodaleveza.com.br
+            - https://algoritmodaleveza.com.br
+  
+          # TUS precisa de POST (criar upload), PATCH (chunks) e HEAD (retomar/checar offset)
+          methods:
+            - GET
+            - POST
+            - PATCH
+            - HEAD
+            - OPTIONS
+            - DELETE
+  
+          # Headers que o browser vai pedir no preflight e que o Supabase usa
+          headers:
+            - authorization
+            - apikey
+            - content-type
+            - x-client-info
+            - x-upsert
+  
+            # TUS protocol headers
+            - tus-resumable
+            - upload-length
+            - upload-offset
+            - upload-metadata
+  
+          # Headers que o browser precisa "enxergar" na resposta (principalmente Location e offsets)
+          exposed_headers:
+            - location
+            - upload-offset
+            - upload-length
+            - tus-resumable
+            - content-range
+            - accept-ranges
+            - content-length
+            - content-disposition
+  
+          credentials: true
+          max_age: 3600
+          preflight_continue: false
 
   ## Edge Functions routes
   - name: functions-v1
