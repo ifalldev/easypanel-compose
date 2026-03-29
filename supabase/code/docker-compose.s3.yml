@@ -66,6 +66,7 @@ services:
       KONG_PLUGINS: request-transformer,cors,key-auth,acl,basic-auth
       KONG_NGINX_PROXY_PROXY_BUFFER_SIZE: 160k
       KONG_NGINX_PROXY_PROXY_BUFFERS: 64 160k
+      KONG_PORT_MAPS: "443:8000"
       SUPABASE_ANON_KEY: ${ANON_KEY}
       SUPABASE_SERVICE_KEY: ${SERVICE_ROLE_KEY}
       DASHBOARD_USERNAME: ${DASHBOARD_USERNAME}
@@ -273,6 +274,9 @@ services:
       REGION: ${AWS_DEFAULT_REGION}
       ENABLE_IMAGE_TRANSFORMATION: "true"
       IMGPROXY_URL: http://imgproxy:5001
+      REQUEST_ALLOW_X_FORWARDED_PATH: "true"
+      NODE_ENV: "production"
+      TUS_URL_PATH: "/storage/v1/upload/resumable"
 
   imgproxy:
     image: darthsim/imgproxy:v3.8.0
