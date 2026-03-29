@@ -276,7 +276,7 @@ services:
       IMGPROXY_URL: http://imgproxy:5001
       REQUEST_ALLOW_X_FORWARDED_PATH: "true"
       NODE_ENV: "production"
-      TUS_URL_PATH: "/storage/v1/upload/resumable"
+      TUS_URL_PATH: "/upload/resumable"
 
   imgproxy:
     image: darthsim/imgproxy:v3.8.0
