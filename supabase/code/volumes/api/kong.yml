@@ -226,13 +226,13 @@ services:
           credentials: true
           max_age: 3600
           preflight_continue: false
-        - name: request-transformer
-          config:
-            add:
-              headers:
-                - X-Forwarded-Proto:https
-                - X-Forwarded-Port:443
-                - X-Forwarded-Host:supabase.epstemia.com.br
+      - name: request-transformer
+        config:
+          add:
+            headers:
+              - X-Forwarded-Proto:https
+              - X-Forwarded-Port:443
+              - X-Forwarded-Host:supabase.epstemia.com.br
 
   ## Edge Functions routes
   - name: functions-v1
