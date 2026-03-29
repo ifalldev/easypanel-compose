@@ -181,6 +181,13 @@ services:
         strip_path: true
         paths:
           - /storage/v1/
+      # (recomendado) garanta também rota direta pro endpoint retornado no Location
+      # porque o Location vem como /upload/resumable/...
+      - name: storage-resumable
+        strip_path: false
+        paths:
+          - /upload/resumable/
+          - /upload/resumable
     plugins:
       - name: cors
         config:
